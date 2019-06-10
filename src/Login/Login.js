@@ -5,6 +5,7 @@ class Login extends React.Component{
     render() {
         return (
             <div className="col-md-4">
+                <div className="card">
                 <form onSubmit="">
                 <div className="form-group">
                     <label for="username">Username</label>
@@ -16,6 +17,7 @@ class Login extends React.Component{
                 </div>
                 <input type="submit" value="Login" className="btn btn-primary" />
                 </form>
+                </div>
             </div>
         )
     }
