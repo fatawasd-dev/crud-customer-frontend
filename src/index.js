@@ -9,6 +9,7 @@ import AddCustomer from "./Customer/CreateCustomer";
 import Login from "./Login/Login";
 import NotFound from "./NotFound";
 import Home from "./Inc/Home";
+import LogOut from "./Inc/Logout";
 import * as serviceWorker from "./serviceWorker";
 
 // ReactDOM.render(<App />, document.getElementById('root'));
@@ -22,11 +23,12 @@ const routing = (
   <Router>
     <div>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Login} />
         <Route path="/users" component={Users} />
         <Route path="/edit/:id" component={EditCustomer} />
         <Route path="/addCustomer" component={AddCustomer} />
-        <Route path="/login" component={Login} />
+        <Route path="/home" component={Home} />
+        <Route path="/logout" component={LogOut} />
         <Route component={NotFound} />
       </Switch>
     </div>

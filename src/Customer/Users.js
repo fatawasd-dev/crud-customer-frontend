@@ -15,7 +15,14 @@ export default class Users extends React.Component{
         axios.get(`${server.baseURL}/customer/customer`)
         .then(res => {
             this.setState({ customer: res.data });
+            console.log(res)
         })
+    }
+
+    componentWillMount(){
+        if(window.sessionStorage.getItem('token') === null){
+            window.location = "/"
+        }
     }
 
     tabRow(){
@@ -28,6 +35,7 @@ export default class Users extends React.Component{
         return (
             <div>
             <Nav />
+            <h2>Welcome, { window.sessionStorage.getItem('nama') }</h2>
             <Link to="/addCustomer">Tambah Data</Link>
             <table border="1" className="table table-striped">
                 <thead className="thead-dark">

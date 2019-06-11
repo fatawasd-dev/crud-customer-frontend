@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { server } from '../server';
+import Token from '../Inc/Token';
 import 'bootstrap/dist/css/bootstrap.css';
 
 class Login extends React.Component{
@@ -21,18 +22,42 @@ class Login extends React.Component{
             [name]: value
         })
     }
-    
-    handleSubmit = (e) => {
-        e.preventDefault();
+
+    login(){
         const { username, password } = this.state;
-        axios.post(`${server.baseURL}/login/login`, {username, password})
+        var headers = {
+            "Content-Type": "application/json",
+            "Authorization": "loremipsum"
+        }
+        axios.post(`${server.baseURL}/login/login`, {username, password}, {headers: headers})
         .then(res => {
             if(res.data['token'] == "loremipsum"){
-                window.location = "/users"
+                window.sessionStorage.setItem('token', res.data['token']);
+                window.sessionStorage.setItem('nama', username)
+                window.location = "/users";
             }else{
                 alert("Username atau password salah")
             }
         })
+        // axios.request({
+        //     method: 'post',
+        //     url: `${server.baseURL}/login/login`,
+        //     data: {
+        //         username: username,
+        //         password: password
+        //     },
+        //     headers: {
+        //         token: "loremipsum"
+        //     }
+        // }).then(res => {
+        //     window.location = "/users"
+            
+        // })
+    }
+    
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.login();
     }
 
     render() {
